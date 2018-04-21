@@ -14,4 +14,15 @@ class Product extends Model
     {
         return "products";
     }
+    public function getOne($id){
+        return "products";
+    }
+    public function getAll(){
+
+    }
+    public function __construct()
+    {
+//        $this->db = $db;
+    }
+
 }

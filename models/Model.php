@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 use app\services\Db;
+use app\interfaces\IModel;
 
 abstract class Model implements IModel
 {
