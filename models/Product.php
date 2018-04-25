@@ -1,7 +1,6 @@
 <?php
 namespace app\models;
 
-
 class Product extends Model
 {
     public $id;
@@ -13,16 +12,6 @@ class Product extends Model
     public function getTableName()
     {
         return "products";
-    }
-    public function getOne($id){
-        return "products";
-    }
-    public function getAll(){
-
-    }
-    public function __construct()
-    {
-//        $this->db = $db;
     }
 
 }

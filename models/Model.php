@@ -7,9 +7,9 @@ abstract class Model implements IModel
 {
     protected $db;
 
-    public function __construct(Db $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = new Db;
     }
 
     public function getOne($id)

@@ -14,6 +14,8 @@ class Db
 
     private $conn = null;
 
+    private static  $instance = null;
+
     private function getConnection()
     {
         if (is_null($this->conn)) {
