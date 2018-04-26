@@ -11,3 +11,6 @@ $product = new Product();
 var_dump($product->getAll());
 
 
+
+$product = new Product();
+var_dump($product->createProduct(3,Rolex, gold,1000));
