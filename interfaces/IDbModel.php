@@ -1,7 +1,6 @@
 <?php
 namespace app\interfaces;
-
-interface IModel
+interface IDbModel
 {
     public static function getOne($id);
 
