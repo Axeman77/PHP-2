@@ -11,6 +11,9 @@ trait TSingletone
     private function __clone(){}
     private function __wakeup(){}
 
+    /**
+     * @return static
+     */
     public static function getInstance()
     {
         if (is_null(static::$instance)) {

@@ -1,8 +1,13 @@
 <?php
+
 namespace app\services;
+
+use app\traits\TSingletone;
 
 class Db
 {
+    use TSingletone;
+
     private $config = [
         'driver' => 'mysql',
         'host' => 'localhost',
@@ -12,6 +17,7 @@ class Db
         'charset' => 'utf8'
     ];
 
+    /** @var \PDO  */
     private $conn = null;
 
     private static  $instance = null;
@@ -52,6 +58,18 @@ class Db
         return $this->query($sql, $params)->fetchAll();
     }
 
+    public function queryObject($sql, $params, $class)
+    {
+        $smtp = $this->query($sql, $params);
+        $smtp->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
+        return $smtp->fetch();
+    }
+
+    public function lastInsertId()
+    {
+        return $this->conn->lastInsertId();
+    }
+
     private function prepareDsnString()
     {
         return sprintf("%s:host=%s;dbname=%s;charset=%s",
@@ -61,4 +79,13 @@ class Db
             $this->config['charset']
         );
     }
+
+
+
+    function __toString()
+    {
+        return "Db";
+    }
+
+
 }

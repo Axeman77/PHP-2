@@ -1,16 +1,17 @@
 <?php
-use \app\models\Product;
-use \app\models\Model;
 
-include $_SERVER['DOCUMENT_ROOT'] . "/../services/Autoloader.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
+include ROOT_DIR . "services/Autoloader.php";
 
 spl_autoload_register([new \app\services\Autoloader(), 'loadClass']);
 
-$product = new Product();
-var_dump($product->getAll());
+$controllerName = $_GET['c'] ?: 'product';
+$actionName = $_GET['a'];
 
+$controllerClass = CONTROLLERS_NAMESPACE . ucfirst($controllerName) . "Controller";
 
-
-$product = new Product();
-var_dump($product->createProduct(3,Rolex, gold,1000));
+if(class_exists($controllerClass)){
+    /** @var  $controller */
+    $controller = new $controllerClass;
+    $controller->runAction($actionName);
+}
