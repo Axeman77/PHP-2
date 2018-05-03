@@ -4,13 +4,25 @@
 namespace app\controllers;
 
 
+use app\interfaces\IRenderer;
+use app\services\TemplateRenderer;
+
 abstract class Controller
 {
     private $action;
     private $defaultAction = 'index';
     private $layout = 'main';
     private $useLayout = true;
+    private $renderer;
 
+    /**
+     * Controller constructor.
+     * @param $renderer
+     */
+    public function __construct(IRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
 
     public function runAction($action = null)
     {
@@ -24,7 +36,6 @@ abstract class Controller
         }
     }
 
-
     public function render($template, $params = [])
     {
         if($this->useLayout){
@@ -37,11 +48,7 @@ abstract class Controller
 
     public function renderTemplate($template, $params = [])
     {
-        ob_start();
-        extract($params);
-        $templatePath = TEMPLATES_DIR . $template . ".php";
-        include $templatePath;
-        return ob_get_clean();
+        return $this->renderer->render($template, $params);
     }
 
 }

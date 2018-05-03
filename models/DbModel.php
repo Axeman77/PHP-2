@@ -5,10 +5,15 @@ namespace app\models;
 use app\interfaces\IDbModel;
 use app\services\Db;
 
+/**
+ * Class DbModel
+ * @package app\models
+ */
 abstract class DbModel extends Model implements IDbModel
 {
+
     /** @var  Db */
-    protected $db;
+    protected $_db;
 
     /**
      * Product constructor.
@@ -44,8 +49,8 @@ abstract class DbModel extends Model implements IDbModel
     {
         $params = [];
         $columns = [];
-        foreach ($this as $key => $value) {
-            if ($key == 'db') {
+        foreach ($this->properties as $key => $value) {
+            if (in_array($key, static::getPersonalProperties())) {
                 continue;
             }
 
@@ -62,12 +67,19 @@ abstract class DbModel extends Model implements IDbModel
         $this->id = $this->db->lastInsertId();
     }
 
-    public function update()
-    {
-
-    }
+    public function update() {}
 
     public function save(){
-
+        if($this->id){
+            return $this->insert();
+        }else{
+            return $this->update();
+        }
     }
+
+    public static function getPersonalProperties()
+    {
+        return ['db', 'isNew'];
+    }
+
 }

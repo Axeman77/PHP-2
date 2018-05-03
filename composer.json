@@ -1,0 +1,6 @@
+{
+    "name": "osa/php2",
+    "require": {
+        "twig/twig": "^2.4"
+    }
+}

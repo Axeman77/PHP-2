@@ -18,14 +18,14 @@ class Product extends DbModel///extends DbModel
      * @param $price
      * @param $customer
      */
-    public function __construct($id = null, $name = null, $description = null, $price = null, $customer = null)
+    public function __construct($name = null, $description = null, $price = null, $path = null, $model=null)
     {
         parent::__construct();
-        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->customer = $customer;
+        $this->model = $model;
+        $this->path = $path;
     }
 
     public static function getTableName()

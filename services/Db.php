@@ -13,7 +13,7 @@ class Db
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'shop',
+        'database' => 'fire',
         'charset' => 'utf8'
     ];
 
@@ -79,8 +79,6 @@ class Db
             $this->config['charset']
         );
     }
-
-
 
     function __toString()
     {

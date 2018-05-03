@@ -8,13 +8,14 @@ class ProductController extends Controller
 {
     public function actionIndex()
     {
-        echo "catalog";
+
+        echo 'catalog';
     }
 
     public function actionCard()
     {
-       $id = $_GET['id'];
-       $product = Product::getOne($id);
-       echo $this->render('card', ['product' => $product]);
+        $id = $_GET['id'];
+        $product = Product::getOne($id);
+        echo $this->render('card', ['product' => $product]);
     }
 }
