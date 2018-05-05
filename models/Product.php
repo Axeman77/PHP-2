@@ -2,13 +2,14 @@
 namespace app\models;
 
 
-class Product extends DbModel///extends DbModel
+class Product extends DataEntity///extends DataEntity
 {
     public $id;
     public $name;
     public $description;
     public $price;
-    public $customer;
+    public $model;
+    public $path;
 
     /**
      * Product constructor.
@@ -18,7 +19,7 @@ class Product extends DbModel///extends DbModel
      * @param $price
      * @param $customer
      */
-    public function __construct($name = null, $description = null, $price = null, $path = null, $model=null)
+   /* public function __construct($name = null, $description = null, $price = null, $path = null, $model=null)
     {
         parent::__construct();
         $this->name = $name;
@@ -31,6 +32,6 @@ class Product extends DbModel///extends DbModel
     public static function getTableName()
     {
         return "products";
-    }
+    }*/
 
 }

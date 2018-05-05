@@ -1,12 +1,11 @@
 <?php
 namespace app\services;
 
-
 use app\interfaces\IRenderer;
 
 class TemplateRenderer implements IRenderer
 {
-    public function render($template, $params = [])
+    public function render($template, $params = []) : string
     {
         ob_start();
         extract($params);

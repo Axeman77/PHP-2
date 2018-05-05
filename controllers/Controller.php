@@ -1,19 +1,15 @@
 <?php
-
-
 namespace app\controllers;
 
-
 use app\interfaces\IRenderer;
-use app\services\TemplateRenderer;
 
 abstract class Controller
 {
-    private $action;
-    private $defaultAction = 'index';
-    private $layout = 'main';
-    private $useLayout = true;
-    private $renderer;
+    protected $action;
+    protected $defaultAction = 'index';
+    protected $layout = 'main';
+    protected $useLayout = true;
+    protected $renderer;
 
     /**
      * Controller constructor.

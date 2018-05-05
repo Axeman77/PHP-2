@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-class User extends DbModel
+class User extends DataEntity
 {
     public $id;
     public $login;
