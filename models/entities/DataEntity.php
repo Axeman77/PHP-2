@@ -1,9 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\models\entities;
 
-use app\interfaces\IDbModel;
-use app\services\Db;
+use app\models\Model;
 
 /**
  * Class DataEntity

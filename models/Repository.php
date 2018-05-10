@@ -1,5 +1,7 @@
 <?php
 namespace app\models;
+use app\base\App;
+use app\models\entities\DataEntity;
 use app\services\Db;
 
 abstract class Repository
@@ -13,21 +15,21 @@ abstract class Repository
      */
     public function __construct()
     {
-        $this->db = Db::getInstance();
+        $this->db = App::call()->db;
     }
 
     public function getOne($id)
     {
         $tableName = $this->getTableName();
-        $sql = "SELECT * FROM {$tableName} WHERE id = :id";
-        return Db::getInstance()->queryObject($sql, [':id' => $id], $this->getEntityClass());
+        $sql = "SELECT * FROM  {$tableName} WHERE id = :id";
+        return App::call()->db->queryObject($sql, [':id' => $id], $this->getEntityClass());
     }
 
     public function getAll()
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM {$tableName}";
-        return Db::getInstance()->queryAll($sql);
+        return App::call()->db->queryAll($sql);
     }
 
     public function delete(DataEntity $entity)
@@ -66,7 +68,6 @@ abstract class Repository
             return $this->update($entity);
         }
     }
-
 
     public function update() {}
 

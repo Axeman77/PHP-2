@@ -2,6 +2,11 @@
 
 namespace app\services;
 
+class BadRequestException extends \Exception{
+    protected $message = "Invalid Request";
+    protected $code = 404;
+}
+
 class Request
 {
     private $requestString;
@@ -9,7 +14,6 @@ class Request
     private $actionName;
     private $params;
     private $method;
-
 
     public function __construct()
     {
@@ -19,12 +23,14 @@ class Request
 
     private function parseRequest()
     {
-        $pattern = "#(?P<controller>\w+)[/]?(?P<action>\w+)?[/]?[?]?(?P<params>.*)#ui";
+        $pattern = "#(?P<controller>[a-z]+)[/]?(?P<action>\w+)?[/]?[?]?(?P<params>.*)#ui";
         $this->method = $_SERVER['REQUEST_METHOD'];
         if (preg_match_all($pattern, $this->requestString, $matches)) {
             $this->controllerName = $matches['controller'][0];
             $this->actionName = $matches['action'][0];
             $this->params = $_REQUEST;
+        } else {
+            throw new BadRequestException();
         }
     }
 

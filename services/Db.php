@@ -6,21 +6,25 @@ use app\traits\TSingletone;
 
 class Db
 {
-    use TSingletone;
+    private $config;
 
-    private $config = [
-        'driver' => 'mysql',
-        'host' => 'localhost',
-        'login' => 'root',
-        'password' => '',
-        'database' => 'fire',
-        'charset' => 'utf8'
-    ];
-
-    /** @var \PDO  */
+    /** @var \PDO */
     private $conn = null;
 
-    private static  $instance = null;
+    private static $instance = null;
+
+    /**
+     * Db constructor.
+     */
+    public function __construct($driver, $host, $login, $password, $database, $charset = "utf8")
+    {
+        $this->config['driver'] = $driver;
+        $this->config['host'] = $host;
+        $this->config['login'] = $login;
+        $this->config['password'] = $password;
+        $this->config['database'] = $database;
+        $this->config['charset'] = $charset;
+    }
 
     private function getConnection()
     {
@@ -36,7 +40,8 @@ class Db
         return $this->conn;
     }
 
-    private function query($sql, $params){
+    private function query($sql, $params)
+    {
         $pdoStatement = $this->getConnection()->prepare($sql);
         $pdoStatement->execute($params);
         return $pdoStatement;
@@ -79,7 +84,6 @@ class Db
             $this->config['charset']
         );
     }
-
 
 
     function __toString()

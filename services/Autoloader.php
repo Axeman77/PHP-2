@@ -8,7 +8,7 @@ class Autoloader
 
     public function loadClass($className)
     {
-        $className = str_replace(["app\\", "\\"], [ROOT_DIR, DS], $className);
+        $className = str_replace(["app\\", "\\"], [__DIR__ . "/../", DS], $className);
         $className .= $this->fileExtension;
         if (file_exists($className)) {
             include $className;

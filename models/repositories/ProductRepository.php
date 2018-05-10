@@ -2,7 +2,6 @@
 
 
 namespace app\models\repositories;
-use app\models\Product;
 use app\models\Repository;
 
 class ProductRepository extends Repository
@@ -14,8 +13,10 @@ class ProductRepository extends Repository
 
     public function getEntityClass()
     {
-        return Product::class;
+        return \app\models\entities\Product::class;
     }
 
+    public function getByCategory($categoryId){
 
+    }
 }
